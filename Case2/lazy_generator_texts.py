@@ -8,6 +8,7 @@
 """
 
 from typing import Tuple, Iterable, Any
+import numpy as np
 import random
 
 
@@ -16,7 +17,7 @@ class LazyGeneratorTexts:
 
     Класс ленивого генератора.
     При инициализации объекта класса, необходимо указать размер батча.
-    Формат батча: (высота картинки, ширина картинки, количество картинок)
+    Формат батча: (количество картинок, высота картинки, ширина картинки)
 
     """
 
@@ -41,17 +42,28 @@ class LazyGeneratorTexts:
         rand = lambda: random.randint(0, 30)
         return '#%02X%02X%02X' % (rand(), rand(), rand())
 
+    @staticmethod
+    def imageOHE(image, class_num, black_color=200):
+        pic = np.array(image)
+        img = np.zeros((pic.shape[0], pic.shape[1], class_num))
+        np.place(img[:, :, 0], pic[:, :, 0] < black_color, 0)
+        np.place(img[:, :, 0], pic[:, :, 0] >= black_color, 1)
+        return img
+
     def generator(self) -> Iterable[Any]:
         while True:
             x_batch = []
             y_batch = []
+            for i in range(self.__BatchSize[0]):
+                # запись данных в батч
+                x_batch += [1]
+                y_batch += [1]
             yield x_batch, y_batch
 
 
 if __name__ == '__main__':
     # Tests
-    test = LazyGeneratorTexts((5, 5, 1))
-    for i in test.generator():
+    test = LazyGeneratorTexts((2, 5, 5)).generator()
+    for i in test:
         print(i)
         break
-
