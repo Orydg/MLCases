@@ -91,6 +91,19 @@ class LazyGeneratorTexts:
             # записываем те же данные но в черную картинку (цвет надписи красный)
             ImageDraw.Draw(self.__ImgRes).text((w, h + (max_s + 5) * n), rand_string, fill=(255, 255, 255), font=font)
 
+    def rand_back(self):
+
+        w, h = self.__ImgSize
+
+        # случайный фон картинки
+        for _ in range(randint(10, 25)):  # случайно количество объектов
+
+            # случайный прямоугольник
+            coord = (randint(0, w), randint(0, h), randint(0, w), randint(0, h))
+            ImageDraw.Draw(self.__ImgTrain).rectangle(coord, fill=None,
+                                                      outline=self.rand_color(35, 255),
+                                                      width=randint(10, 60))
+
     def get_img(self):
         # генерируем две одинаковые по размерам картинки
         w, h = self.__ImgSize
@@ -102,13 +115,7 @@ class LazyGeneratorTexts:
         self.__ImgRes = Image.new("RGB", (w, h))
 
         # случайный фон картинки
-        for _ in range(randint(10, 25)):  # случайно количество объектов
-
-            # случайный прямоугольник
-            coord = (randint(0, w), randint(0, h), randint(0, w), randint(0, h))
-            ImageDraw.Draw(self.__ImgTrain).rectangle(coord, fill=None,
-                                                      outline=self.rand_color(35, 255),
-                                                      width=randint(10, 60))
+        self.rand_back()
 
         # случайный шрифт
         self.rand_font()
