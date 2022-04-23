@@ -15,9 +15,9 @@ from random import randint
 
 
 ROOT_TO_FONTS = ''
-OFTEN_FONTS = ['arial.ttf', 'ARIALN.TTF', 'BOOKOS.TTF', 'cour.ttf', 'GOTHIC.TTF', 'georgia.ttf',
-               'lucon.ttf', 'micross.ttf', 'verdana.ttf', 'ariblk.ttf', 'BKANT.TTF', 'comic.ttf',
-               'cour.ttf', 'GARA.TTF', 'impact.ttf', 'l_10646.ttf', 'times.ttf']
+OFTEN_FONTS = ['arial.ttf', 'ARIALN.TTF', 'BOOKOS.TTF', 'cour.ttf', 'georgia.ttf',
+               'GARA.TTF', 'ariblk.ttf', 'comic.ttf', 'GOST_A.TTF', 'times.ttf',
+               'verdana.ttf', 'lucon.ttf', 'impact.ttf']
 
 
 class LazyGeneratorTexts:
