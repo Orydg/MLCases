@@ -147,10 +147,26 @@ class LazyGeneratorTexts:
 
 
 if __name__ == '__main__':
+
     # Tests
-    test = LazyGeneratorTexts(2, (50, 50)).generator()
-    for i in test:
-        print(i[1].shape)
+    import matplotlib.pyplot as plt
+
+    # перевод маски в изображение
+    def predToGrayImage(segment):
+        img = np.ones((segment.shape[0], segment.shape[1], 3))
+        img[:, :, 0] = segment[:, :, 0] * 255
+        img[:, :, 1] = img[:, :, 0]
+        img[:, :, 2] = img[:, :, 0]
+        return img.astype('uint8')
+
+    test = LazyGeneratorTexts(2, (500, 500)).generator()
+    for x, y in test:
         break
 
-    # print(LazyGeneratorTexts(2, (50, 50)).get_img()[1])
+    y = predToGrayImage(y[0])
+
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(25, 25))
+    axes[0].imshow(x[0])
+    axes[1].imshow(y)
+
+    plt.show()
