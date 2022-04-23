@@ -42,7 +42,7 @@ class LazyGeneratorTexts:
         self.__Lang = lang
         self.__Token = '!@#$%*-+/=()[]{}~“”№<>,.;:?'
         if self.__Lang == "RU":
-            self.__Alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'  # RU
+            self.__Alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'  # RU
         else:
             self.__Alphabet = ''
         self.__ResToken = self.__Token + self.__Alphabet
