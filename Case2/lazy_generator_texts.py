@@ -62,8 +62,8 @@ class LazyGeneratorTexts:
 
     def rand_font(self):
         # фиксированные случайные координаты для записи текста в обоих файлах
-        x = randint(5, int(self.__ImgSize[0] / 4))
-        y = randint(25, int(self.__ImgSize[1] / 2))
+        w = randint(1, int(self.__ImgSize[0] / 10))
+        h = randint(25, int(self.__ImgSize[1] / 2))
 
         # случайный текст картинки
         for n in range(randint(5, 10)):  # случайное количество строк текста
@@ -85,11 +85,11 @@ class LazyGeneratorTexts:
 
             # записываем в начало координат Х У (случайные) случайную строку (случайная длина строки) случайным цветом,
             # и случайным размером шрифта
-            ImageDraw.Draw(self.__ImgTrain).text((x, y + (max_s + 5) * n), rand_string,
+            ImageDraw.Draw(self.__ImgTrain).text((w, h + (max_s + 5) * n), rand_string,
                                                  fill=self.rand_color(0, 30), font=font)
 
             # записываем те же данные но в черную картинку (цвет надписи красный)
-            ImageDraw.Draw(self.__ImgRes).text((x, y + (max_s + 5) * n), rand_string, fill=(255, 255, 255), font=font)
+            ImageDraw.Draw(self.__ImgRes).text((w, h + (max_s + 5) * n), rand_string, fill=(255, 255, 255), font=font)
 
     def get_img(self):
         # генерируем две одинаковые по размерам картинки
