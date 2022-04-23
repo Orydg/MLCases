@@ -7,7 +7,8 @@
 
 """
 
-from typing import Tuple
+from typing import Tuple, Iterable, Any
+import random
 
 
 class LazyGeneratorTexts:
@@ -19,7 +20,7 @@ class LazyGeneratorTexts:
 
     """
 
-    def __init__(self, batch_size: Tuple[int], lang: str = "RU"):
+    def __init__(self, batch_size: Tuple[int, int, int], lang: str = "RU"):
         """
 
         :param batch_size: Размер входного батча модели.
@@ -34,3 +35,23 @@ class LazyGeneratorTexts:
         else:
             self.__Alphabet = ''
         self.__ResToken = self.__Token + self.__Alphabet
+
+    @staticmethod
+    def rand_color() -> str:
+        rand = lambda: random.randint(0, 30)
+        return '#%02X%02X%02X' % (rand(), rand(), rand())
+
+    def generator(self) -> Iterable[Any]:
+        while True:
+            x_batch = []
+            y_batch = []
+            yield x_batch, y_batch
+
+
+if __name__ == '__main__':
+    # Tests
+    test = LazyGeneratorTexts((5, 5, 1))
+    for i in test.generator():
+        print(i)
+        break
+
